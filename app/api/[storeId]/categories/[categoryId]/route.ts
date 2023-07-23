@@ -16,8 +16,8 @@ export async function GET(
       where: {
         id: params.categoryId
       },
-      include:{
-        billboard:true
+      include: {
+        billboard: true
       }
     });
   
@@ -30,16 +30,16 @@ export async function GET(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: {  storeId: string ,categoryId: string} }
+  { params }: { params: { storeId: string,categoryId: string } }
 ) {
   try {
     const { userId } = auth();
-
+    console.log('2',params.categoryId)
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
     }
 
-    if (!params.categoryId  ) {
+    if (!params.categoryId) {
       return new NextResponse("Category id is required", { status: 400 });
     }
 
@@ -70,7 +70,7 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { storeId: string, categoryId: string } }
+  { params }: { params: { categoryId: string, storeId: string } }
 ) {
   try {   
     const { userId } = auth();
@@ -83,12 +83,12 @@ export async function PATCH(
       return new NextResponse("Unauthenticated", { status: 403 });
     }
 
-    if (!name) {
-      return new NextResponse("Name is required", { status: 400 });
+    if (!billboardId) {
+      return new NextResponse("Billboard ID is required", { status: 400 });
     }
 
-    if (!billboardId) {
-      return new NextResponse("Billboard is required", { status: 400 });
+    if (!name) {
+      return new NextResponse("Name is required", { status: 400 });
     }
 
     if (!params.categoryId) {

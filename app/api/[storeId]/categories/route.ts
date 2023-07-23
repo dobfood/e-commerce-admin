@@ -21,9 +21,9 @@ export async function POST(
     if (!name) {
       return new NextResponse("Name is required", { status: 400 });
     }
-
+    
     if (!billboardId) {
-      return new NextResponse("Billboard is required", { status: 400 });
+      return new NextResponse("Billboard ID is required", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -51,7 +51,7 @@ export async function POST(
   
     return NextResponse.json(category);
   } catch (error) {
-    console.log('[CATEGORY_POST]', error);
+    console.log('[CATEGORIES_POST]', error);
     return new NextResponse("Internal error", { status: 500 });
   }
 };
